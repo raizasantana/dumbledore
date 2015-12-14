@@ -82,5 +82,10 @@ public class Usuario {
 			
 		
 	}
+	
+	public String toString()
+	{
+		return this.nome;
+	}
 
 }
