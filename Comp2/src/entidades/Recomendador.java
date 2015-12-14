@@ -89,6 +89,8 @@ public class Recomendador {
 				String vet[] = linha.split("#");
 			
 				Filme novo = new Filme(vet[1],getGeneros(linha));
+				novo.setDataLancamento(vet[2]);
+				novo.setUrl(vet[3]);
 				
 				this.filmes.add(novo);
 
@@ -109,7 +111,7 @@ public class Recomendador {
 		
 		populaHashGeneros();
 		
- 		for(int i = 6; i < vet.length; i++)
+ 		for(int i = 4; i < vet.length; i++)
  		{
  			
  			if(Integer.valueOf(vet[i]) == 1)

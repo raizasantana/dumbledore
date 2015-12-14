@@ -67,7 +67,7 @@ public class Usuario {
 	{
 		if(filmesAvaliados.containsKey(f)) //Se o usuario ja avaliou, atualiza a nota
 			filmesAvaliados.replace(f, nota);
-		else // Se nao, add nova nota
+		else 
 			filmesAvaliados.put(f, nota);
 	}
 	

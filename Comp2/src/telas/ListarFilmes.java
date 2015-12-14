@@ -13,10 +13,14 @@ import entidades.Filme;
 import entidades.Recomendador;
 
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 public class ListarFilmes extends JDialog {
-
-	private final JPanel contentPanel = new JPanel();
 
 	/**
 	 * Launch the application.
@@ -40,20 +44,37 @@ public class ListarFilmes extends JDialog {
 		setTitle("Filmes");
 		setBounds(100, 100, 500, 400);
 		getContentPane().setLayout(null);
-		contentPanel.setBounds(0, 0, 494, 338);
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel);
 		Recomendador rec = Recomendador.getInstance();
 		
 		if(rec.filmes.size() <= 0)
 			rec.geraFilmes();
 		
-		contentPanel.setLayout(null);
-		{
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(113, 29, 274, 318);
+		getContentPane().add(scrollPane);
+		
 			JList list = new JList(rec.filmes.toArray());
-			list.setBounds(63, 33, 365, 274);
-			contentPanel.add(list);
-		}
+			list.setBounds(38, 147, 124, 144);
+		
+			list.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(MouseEvent e) {
+					String mensagem = "Filme: " + rec.filmes.get(list.getSelectedIndex()).getTitulo() +"\n";
+					
+					mensagem += "Generos:";
+					
+					for(int i = 0; i < rec.filmes.get(list.getSelectedIndex()).getGeneros().size(); i++)
+						mensagem += rec.filmes.get(list.getSelectedIndex()).getGeneros().get(i) + " | ";
+				
+					mensagem += "\n Lançamento: " +rec.filmes.get(list.getSelectedIndex()).getDataLancamento();
+					mensagem += "\n Link IMDB: " +rec.filmes.get(list.getSelectedIndex()).getUrl();
+				
+					JOptionPane.showMessageDialog(null, mensagem);
+		
+				}
+			});
+		
+		
+		scrollPane.setViewportView(list);
 	}
-
 }

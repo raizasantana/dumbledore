@@ -6,9 +6,9 @@ import java.util.HashMap;
 
 public class Filme implements Comparable{
 	
-	private String titulo;
+	private String titulo, url, dataLancamento;
 	private ArrayList<String> generos;
-	private Date dataLancamento;
+	
 	private HashMap<Usuario, Integer> avaliacoes; 
 	
 	public String toString()
@@ -17,6 +17,36 @@ public class Filme implements Comparable{
 	}
 	
 	
+	public String getUrl() {
+		return url;
+	}
+
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+
+	public String getDataLancamento() {
+		return dataLancamento;
+	}
+
+
+	public void setDataLancamento(String dataLancamento) {
+		this.dataLancamento = dataLancamento;
+	}
+
+
+	public HashMap<Usuario, Integer> getAvaliacoes() {
+		return avaliacoes;
+	}
+
+
+	public void setAvaliacoes(HashMap<Usuario, Integer> avaliacoes) {
+		this.avaliacoes = avaliacoes;
+	}
+
+
 	public String getTitulo() {
 		return titulo;
 	}
@@ -29,12 +59,7 @@ public class Filme implements Comparable{
 	public void setGeneros(ArrayList<String> generos) {
 		this.generos = generos;
 	}
-	public Date getDataLancamento() {
-		return dataLancamento;
-	}
-	public void setDataLancamento(Date dataLancamento) {
-		this.dataLancamento = dataLancamento;
-	}
+	
 	
 	public  Filme(String titulo, ArrayList<String> generos)
 	{
