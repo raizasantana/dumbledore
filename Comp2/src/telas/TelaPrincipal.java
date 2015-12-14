@@ -132,6 +132,14 @@ public class TelaPrincipal {
 		menuFilme.add(listarFilmes);
 		
 		JMenuItem avaliarFilme = new JMenuItem("Avaliar Filme");
+		avaliarFilme.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				ListarFilmesAV tlAvaliarFilme = new ListarFilmesAV();
+				tlAvaliarFilme.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				tlAvaliarFilme.setVisible(true);
+			}
+		});
 		menuFilme.add(avaliarFilme);
 		
 		JMenuItem melhoresFilmes = new JMenuItem("Melhores Filmes");

@@ -2,34 +2,29 @@ package telas;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.util.ArrayList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import entidades.Filme;
-import entidades.Recomendador;
-
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JScrollBar;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
 
-public class ListarFilmes extends JDialog {
+import entidades.Recomendador;
+
+public class ListarFilmesAV extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			
-			
-			ListarFilmes dialog = new ListarFilmes();
+			ListarFilmesAV dialog = new ListarFilmesAV();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -40,9 +35,9 @@ public class ListarFilmes extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ListarFilmes() {
+	public ListarFilmesAV() {
 		setTitle("Filmes");
-		setBounds(100, 100, 500, 400);
+		setBounds(100, 100, 600, 400);
 		getContentPane().setLayout(null);
 		Recomendador rec = Recomendador.getInstance();
 		
@@ -50,7 +45,7 @@ public class ListarFilmes extends JDialog {
 			rec.geraFilmes();
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(50, 29, 400, 338);
+		scrollPane.setBounds(50, 29, 500, 338);
 		getContentPane().add(scrollPane);
 		
 			JList list = new JList(rec.filmes.toArray());
@@ -59,17 +54,15 @@ public class ListarFilmes extends JDialog {
 			list.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mousePressed(MouseEvent e) {
-					String mensagem = "Filme: " + rec.filmes.get(list.getSelectedIndex()).getTitulo() +"\n";
 					
-					mensagem += "Generos:";
-					
-					for(int i = 0; i < rec.filmes.get(list.getSelectedIndex()).getGeneros().size(); i++)
-						mensagem += rec.filmes.get(list.getSelectedIndex()).getGeneros().get(i) + " | ";
-				
-					mensagem += "\n Lançamento: " +rec.filmes.get(list.getSelectedIndex()).getDataLancamento();
-					mensagem += "\n Link IMDB: " +rec.filmes.get(list.getSelectedIndex()).getUrl();
-				
-					JOptionPane.showMessageDialog(null, mensagem);
+					String nota = "0";
+					while(Integer.valueOf(nota) <= 0 || Integer.valueOf(nota) > 5)
+					{	
+						nota = JOptionPane.showInputDialog("Insira sua nota para o filme: (1 a 5)");
+						
+						if(Integer.valueOf(nota) <= 0 || Integer.valueOf(nota) > 5)
+							JOptionPane.showMessageDialog(null,"Insira notas entre 1 a 5!");
+					}
 		
 				}
 			});
