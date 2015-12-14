@@ -7,6 +7,18 @@ public class Recomendador {
 	
 	private ArrayList<Filme> filmes = new ArrayList<Filme>();
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+	
+	private static Recomendador uniqueInstance;
+	
+	public static synchronized Recomendador getInstance() {
+		if (uniqueInstance == null)
+			uniqueInstance = new Recomendador();
+
+		return uniqueInstance;
+	}
+
+
+
 
 	public ArrayList<Filme> getMelhoresfilmes(int k)
 	{
@@ -26,9 +38,9 @@ public class Recomendador {
 		return this.getMelhoresfilmes(4);
 	}
 	
-	public void criarUsuario(String nome, int idade, Sexo sexo)
+	public void criarUsuario(String nome, int idade, String feminino)
 	{
-		Usuario u = new Usuario(nome, sexo);
+		Usuario u = new Usuario(nome, feminino);
 		u.setIdade(idade);
 		
 		usuarios.add(u);

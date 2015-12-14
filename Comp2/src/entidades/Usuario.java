@@ -6,9 +6,8 @@ import java.util.HashMap;
 public class Usuario {
 	
 	private HashMap<Filme, Integer> filmesAvaliados;
-	private Sexo sexo;
 	private int idade;
-	private String nome, ocupacao, CEP;
+	private String nome, ocupacao, CEP, sexo;
 	
 	//Metodos de acesso
 	public HashMap<Filme, Integer> getFilmesAvaliados() {
@@ -17,7 +16,7 @@ public class Usuario {
 	public void setFilmesAvaliados(HashMap<Filme, Integer> filmesAvaliados) {
 		this.filmesAvaliados = filmesAvaliados;
 	}
-	public Sexo getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
 
@@ -46,7 +45,7 @@ public class Usuario {
 	}
 	
 	//Construtores
-	public Usuario(String n, int i, Sexo s, String o, String c)
+	public Usuario(String n, int i, String s, String o, String c)
 	{
 		this.nome = n;
 		this.idade = i;
@@ -56,7 +55,7 @@ public class Usuario {
 				
 	}
 	
-	public Usuario(String nome, Sexo s)
+	public Usuario(String nome, String s)
 	{
 		this.nome = nome;
 		this.sexo = s;
