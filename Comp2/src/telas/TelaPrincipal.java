@@ -8,12 +8,14 @@ import javax.swing.JMenuBar;
 import java.awt.BorderLayout;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import entidades.Recomendador;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 public class TelaPrincipal {
 
@@ -40,7 +42,8 @@ public class TelaPrincipal {
 	 * Create the application.
 	 */
 	public TelaPrincipal() {
-		
+		Recomendador rec = Recomendador.getInstance();
+		rec.carregaFilmes();
 		initialize();
 	}
 
@@ -51,7 +54,7 @@ public class TelaPrincipal {
 		frmNetflixChill = new JFrame();
 		frmNetflixChill.setForeground(Color.RED);
 		frmNetflixChill.setTitle("NETFLIX & CHILL");
-		frmNetflixChill.setBounds(100, 100, 500, 400);
+		frmNetflixChill.setBounds(100, 100, 600, 600);
 		frmNetflixChill.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -103,6 +106,14 @@ public class TelaPrincipal {
 		menuUsuario.add(listarFilmesAssistidos);
 		
 		JMenuItem verFilmesSugeridos = new JMenuItem("Ver Filmes Sugeridos");
+		verFilmesSugeridos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				ListarMelhoresFilmes tlFilmesSugeridos = new ListarMelhoresFilmes();
+				tlFilmesSugeridos.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				tlFilmesSugeridos.setVisible(true);
+			}
+		});
 		menuUsuario.add(verFilmesSugeridos);
 		
 		JMenu menuFilme = new JMenu("Filme");
@@ -125,6 +136,15 @@ public class TelaPrincipal {
 		
 		JMenuItem melhoresFilmes = new JMenuItem("Melhores Filmes");
 		menuFilme.add(melhoresFilmes);
+		
+		JMenu mnNewMenu = new JMenu("Sobre");
+		mnNewMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				JOptionPane.showMessageDialog(null,"AA COMP 2 - 2015.2\n Desenvolvido por Raíza Santana e Renan Sies");
+			}
+		});
+		menuBar.add(mnNewMenu);
 	}
 
 }

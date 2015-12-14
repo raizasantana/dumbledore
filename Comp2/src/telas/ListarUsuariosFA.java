@@ -44,7 +44,9 @@ public class ListarUsuariosFA extends JDialog {
 		getContentPane().add(contentPanel);
 		
 		Recomendador rec = Recomendador.getInstance();
-		rec.geraUsuarios();
+		
+		if(rec.usuarios.size() <=0)
+			rec.geraUsuarios();
 		
 		contentPanel.setLayout(null);
 		{

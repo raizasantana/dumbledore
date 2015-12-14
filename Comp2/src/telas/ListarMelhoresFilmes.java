@@ -9,13 +9,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import entidades.Recomendador;
-import entidades.Sexo;
 
 import javax.swing.JList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ListarUsuarios extends JDialog {
+public class ListarMelhoresFilmes extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -24,7 +23,7 @@ public class ListarUsuarios extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			ListarUsuarios dialog = new ListarUsuarios();
+			ListarMelhoresFilmes dialog = new ListarMelhoresFilmes();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -35,40 +34,22 @@ public class ListarUsuarios extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ListarUsuarios() {
-		Recomendador rec = Recomendador.getInstance();		
-		
-		if(rec.usuarios.size() <= 0)
-			rec.geraUsuarios();
-		
-		setTitle("Listar Usuários");
+	public ListarMelhoresFilmes() {
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setTitle("Melhores filmes");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 444, 238);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
+		
+		Recomendador rec = Recomendador.getInstance();
+		
 		contentPanel.setLayout(null);
 		{
-			JList list = new JList(rec.usuarios.toArray());
-			list.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mousePressed(MouseEvent e) {
-					System.out.println("Clicou "+list.getSelectedIndex());
-					setVisible(false);
-					
-					EditarUsuario tlEditarUsuario = new EditarUsuario(rec.usuarios.get(list.getSelectedIndex()), list.getSelectedIndex());
-					tlEditarUsuario.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					tlEditarUsuario.setVisible(true);
-					//tlEditaUsuario.getComponent(
-					
-				}
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					
-				}
-			});
-			list.setBounds(37, 12, 362, 214);
-			contentPanel.add(list); 
+			JList list = new JList(rec.getMelhoresfilmes(3).toArray());
+			list.setBounds(129, 26, 238, 170);
+			contentPanel.add(list);
 		}
 		{
 			JPanel buttonPane = new JPanel();

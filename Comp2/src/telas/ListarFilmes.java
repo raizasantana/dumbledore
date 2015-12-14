@@ -45,7 +45,8 @@ public class ListarFilmes extends JDialog {
 		getContentPane().add(contentPanel);
 		Recomendador rec = Recomendador.getInstance();
 		
-		rec.geraFilmes();
+		if(rec.filmes.size() <= 0)
+			rec.geraFilmes();
 		
 		contentPanel.setLayout(null);
 		{

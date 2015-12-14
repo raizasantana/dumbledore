@@ -36,11 +36,11 @@ public class Filme implements Comparable{
 		this.dataLancamento = dataLancamento;
 	}
 	
-	public  Filme(String titulo, String genero)
+	public  Filme(String titulo, ArrayList<String> generos)
 	{
 		this.titulo = titulo;
-		this.generos = new ArrayList<String>();
-		this.generos.add(genero);
+		this.generos = generos;
+		
 		this.avaliacoes = new HashMap<Usuario, Integer>();
 	}
 	
