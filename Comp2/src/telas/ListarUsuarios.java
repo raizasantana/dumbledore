@@ -42,7 +42,7 @@ public class ListarUsuarios extends JDialog {
 		rec.criarUsuario("Rafa",20, Sexo.masculino);
 		
 		
-		setTitle("Usuários");
+		setTitle("Listar Usuários");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 444, 238);
@@ -57,8 +57,10 @@ public class ListarUsuarios extends JDialog {
 					System.out.println("Clicou "+list.getSelectedIndex());
 					setVisible(false);
 					
-					CriarUsuario tlEditaUsuario = new CriarUsuario();
-					//tlEditaUsuario.getComponent(1) = 
+					EditarUsuario tlEditarUsuario = new EditarUsuario(rec.usuarios.get(list.getSelectedIndex()), list.getSelectedIndex());
+					tlEditarUsuario.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					tlEditarUsuario.setVisible(true);
+					//tlEditaUsuario.getComponent(
 					
 				}
 				@Override
