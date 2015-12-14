@@ -2,6 +2,7 @@ package telas;
 
 import java.awt.EventQueue;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import java.awt.BorderLayout;
@@ -81,13 +82,24 @@ public class TelaPrincipal {
 		listarUsuarios.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				AvaliarFilmes tlAvaliarFilmes = new AvaliarFilmes();
-				tlAvaliarFilmes.setVisible(true);
+				ListarUsuarios tlListarUsuarios = new ListarUsuarios();
+				tlListarUsuarios.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				tlListarUsuarios.setVisible(true);
+				
 			}
 		});
 		menuUsuario.add(listarUsuarios);
 		
 		JMenuItem listarFilmesAssistidos = new JMenuItem("Listar Filmes Assistidos");
+		listarFilmesAssistidos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				ListarUsuariosFA tlListarUsuariosFA = new ListarUsuariosFA();
+				tlListarUsuariosFA.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				tlListarUsuariosFA.setVisible(true);
+				
+			}
+		});
 		menuUsuario.add(listarFilmesAssistidos);
 		
 		JMenuItem verFilmesSugeridos = new JMenuItem("Ver Filmes Sugeridos");
@@ -97,6 +109,15 @@ public class TelaPrincipal {
 		menuBar.add(menuFilme);
 		
 		JMenuItem listarFilmes = new JMenuItem("Listar Filmes");
+		listarFilmes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				ListarFilmes tlListarfilmes = new ListarFilmes();
+				tlListarfilmes.setVisible(true);
+				
+			}
+		});
 		menuFilme.add(listarFilmes);
 		
 		JMenuItem avaliarFilme = new JMenuItem("Avaliar Filme");

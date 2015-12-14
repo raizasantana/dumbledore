@@ -2,11 +2,17 @@ package telas;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import entidades.Filme;
+import entidades.Recomendador;
+
+import javax.swing.JList;
 
 public class ListarFilmes extends JDialog {
 
@@ -17,6 +23,8 @@ public class ListarFilmes extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
+			
+			
 			ListarFilmes dialog = new ListarFilmes();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -29,26 +37,21 @@ public class ListarFilmes extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListarFilmes() {
+		setTitle("Filmes");
 		setBounds(100, 100, 500, 400);
-		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
+		getContentPane().setLayout(null);
+		contentPanel.setBounds(0, 0, 494, 338);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		getContentPane().add(contentPanel);
+		Recomendador rec = Recomendador.getInstance();
+		
+		rec.geraFilmes();
+		
+		contentPanel.setLayout(null);
 		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
+			JList list = new JList(rec.filmes.toArray());
+			list.setBounds(63, 33, 365, 274);
+			contentPanel.add(list);
 		}
 	}
 

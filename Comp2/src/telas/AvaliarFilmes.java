@@ -57,7 +57,7 @@ public class AvaliarFilmes extends JDialog {
 		
 		Recomendador rec = Recomendador.getInstance();
 		
-		ArrayList<Filme> filmes = rec.getMelhoresfilmes(2);
+		rec.geraFilmes();
 		
 		setTitle("Filmes");
 		setBounds(100, 100, 450, 300);
@@ -67,25 +67,25 @@ public class AvaliarFilmes extends JDialog {
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
 		
-		JLabel lblF1 = new JLabel(filmes.get(0).getTitulo());
+		JLabel lblF1 = new JLabel(rec.filmes.get(0).getTitulo());
 		lblF1.setBounds(69, 32, 70, 15);
 		contentPanel.add(lblF1);
 		
-		JLabel lblF2 = new JLabel(filmes.get(1).getTitulo());
+		JLabel lblF2 = new JLabel(rec.filmes.get(1).getTitulo());
 		lblF2.setBounds(69, 66, 70, 15);
 		contentPanel.add(lblF2);
 		
-		JLabel lblF3 = new JLabel(filmes.get(2).getTitulo());
+		JLabel lblF3 = new JLabel(rec.filmes.get(2).getTitulo());
 		lblF3.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblF3.setBounds(26, 109, 113, 15);
 		contentPanel.add(lblF3);
 		
-		JLabel lblF4 = new JLabel(filmes.get(3).getTitulo());
+		JLabel lblF4 = new JLabel(rec.filmes.get(3).getTitulo());
 		lblF4.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblF4.setBounds(12, 148, 127, 15);
 		contentPanel.add(lblF4);
 		
-		JLabel lblF5 = new JLabel(filmes.get(4).getTitulo());
+		JLabel lblF5 = new JLabel(rec.filmes.get(4).getTitulo());
 		lblF5.setBounds(12, 173, 199, 54);
 		contentPanel.add(lblF5);
 		
@@ -133,11 +133,11 @@ public class AvaliarFilmes extends JDialog {
 					{
 						Recomendador rec = Recomendador.getInstance();
 						
-						rec.usuarios.get(rec.usuarios.size()-1).avaliaFilme(filmes.get(1), Integer.valueOf(txtN1.getText()));
-						rec.usuarios.get(rec.usuarios.size()-1).avaliaFilme(filmes.get(2), Integer.valueOf(txtN2.getText()));
-						rec.usuarios.get(rec.usuarios.size()-1).avaliaFilme(filmes.get(3), Integer.valueOf(txtN3.getText()));
-						rec.usuarios.get(rec.usuarios.size()-1).avaliaFilme(filmes.get(4), Integer.valueOf(txtN4.getText()));
-						rec.usuarios.get(rec.usuarios.size()-1).avaliaFilme(filmes.get(5), Integer.valueOf(txtN5.getText()));
+						rec.usuarios.get(rec.usuarios.size()-1).avaliaFilme(rec.filmes.get(0), Integer.valueOf(txtN1.getText()));
+						rec.usuarios.get(rec.usuarios.size()-1).avaliaFilme(rec.filmes.get(1), Integer.valueOf(txtN2.getText()));
+						rec.usuarios.get(rec.usuarios.size()-1).avaliaFilme(rec.filmes.get(2), Integer.valueOf(txtN3.getText()));
+						rec.usuarios.get(rec.usuarios.size()-1).avaliaFilme(rec.filmes.get(3), Integer.valueOf(txtN4.getText()));
+						rec.usuarios.get(rec.usuarios.size()-1).avaliaFilme(rec.filmes.get(4), Integer.valueOf(txtN5.getText()));
 						
 						setVisible(false);
 					}
