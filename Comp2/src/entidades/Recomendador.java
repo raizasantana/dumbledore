@@ -8,11 +8,15 @@ public class Recomendador {
 	private ArrayList<Filme> filmes = new ArrayList<Filme>();
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	
+	
+	
 	private static Recomendador uniqueInstance;
 	
 	public static synchronized Recomendador getInstance() {
 		if (uniqueInstance == null)
 			uniqueInstance = new Recomendador();
+		
+		
 
 		return uniqueInstance;
 	}
@@ -23,13 +27,15 @@ public class Recomendador {
 	public ArrayList<Filme> getMelhoresfilmes(int k)
 	{
 		ArrayList<Filme> kMelhores = new ArrayList<Filme>();
-		
-		Collections.sort(filmes);
+		filmes.add(new Filme("Matrix 1",Genero.drama));
+		filmes.add(new Filme("Gone Girl",Genero.drama));
+	/*	Collections.sort(filmes);
 		
 		for(int i = 0; i < k; i++)
 			kMelhores.add(filmes.get(i));
 		
-		return kMelhores;
+		return kMelhores;*/
+		return filmes;
 	}
 	
 	public ArrayList<Filme> recomendaFilmes(Usuario u)

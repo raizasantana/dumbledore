@@ -7,10 +7,14 @@ import java.util.HashMap;
 public class Filme implements Comparable{
 	
 	private String titulo;
-	private ArrayList<Genero> generos;
+	private ArrayList<String> generos;
 	private Date dataLancamento;
-	private HashMap<Usuario, Integer> avaliacoes;
+	private HashMap<Usuario, Integer> avaliacoes = new HashMap<Usuario, Integer>();
 	
+	public String toString()
+	{
+		return this.titulo;
+	}
 	
 	
 	public String getTitulo() {
@@ -19,10 +23,10 @@ public class Filme implements Comparable{
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public ArrayList<Genero> getGeneros() {
+	public ArrayList<String> getGeneros() {
 		return generos;
 	}
-	public void setGeneros(ArrayList<Genero> generos) {
+	public void setGeneros(ArrayList<String> generos) {
 		this.generos = generos;
 	}
 	public Date getDataLancamento() {
@@ -32,15 +36,25 @@ public class Filme implements Comparable{
 		this.dataLancamento = dataLancamento;
 	}
 	
-	
+	public  Filme(String titulo, String genero)
+	{
+		this.titulo = titulo;
+		this.generos = new ArrayList<String>();
+		this.generos.add(genero);
+	}
 	
 	public int getNotaMedia() {
 		int notaMedia = 0;
 		
-		for(int i = 0; i < avaliacoes.size(); i++)
-			notaMedia =+ avaliacoes.get(i);
+		if(avaliacoes.size() > 0)
+		{
+			for(int i = 0; i < avaliacoes.size(); i++)
+				notaMedia =+ avaliacoes.get(i);
 		
-		return notaMedia/avaliacoes.size();
+			return notaMedia/avaliacoes.size();
+		}
+		
+		return 0;
 			
 		
 	}

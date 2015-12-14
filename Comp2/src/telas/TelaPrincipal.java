@@ -76,6 +76,13 @@ public class TelaPrincipal {
 		menuUsuario.add(criarUsuario);
 		
 		JMenuItem listarUsuarios = new JMenuItem("Listar Usuários");
+		listarUsuarios.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				AvaliarFilmes tlAvaliarFilmes = new AvaliarFilmes();
+				tlAvaliarFilmes.setVisible(true);
+			}
+		});
 		menuUsuario.add(listarUsuarios);
 	}
 

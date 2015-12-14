@@ -131,6 +131,9 @@ public class CriarUsuario extends JDialog {
 						 else
 							 rec.criarUsuario(txtNome.getText(), Integer.valueOf(txtIdade.getText()), Sexo.feminino);
 						 
+						 setVisible(false);
+						 AvaliarFilmes tlAvaliarFilmes = new AvaliarFilmes();
+						 tlAvaliarFilmes.setVisible(true);
 						
 					}
 				});
