@@ -21,17 +21,28 @@ public class Recomendador {
 		return uniqueInstance;
 	}
 
-
-
-
-	public ArrayList<Filme> getMelhoresfilmes(int k)
+	public void geraUsuarios()
 	{
-		ArrayList<Filme> kMelhores = new ArrayList<Filme>();
+		
+		this.criarUsuario("Raiza",20, Sexo.feminino);
+		this.criarUsuario("Rafa",20, Sexo.masculino);
+		
+		
+	}
+
+	public void geraFilmes()
+	{
 		filmes.add(new Filme("Matrix 1",Genero.drama));
 		filmes.add(new Filme("Gone Girl",Genero.drama));
 		filmes.add(new Filme("Jogos Vorazes",Genero.drama));
 		filmes.add(new Filme("Star Wars",Genero.drama));
 		filmes.add(new Filme("Se beber, não case",Genero.comedia));
+	}
+	
+	public ArrayList<Filme> getMelhoresfilmes(int k)
+	{
+		ArrayList<Filme> kMelhores = new ArrayList<Filme>();
+		
 	/*	Collections.sort(filmes);
 		
 		for(int i = 0; i < k; i++)

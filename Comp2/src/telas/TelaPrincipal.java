@@ -12,6 +12,7 @@ import entidades.Recomendador;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 public class TelaPrincipal {
 
@@ -47,6 +48,7 @@ public class TelaPrincipal {
 	 */
 	private void initialize() {
 		frmNetflixChill = new JFrame();
+		frmNetflixChill.setForeground(Color.RED);
 		frmNetflixChill.setTitle("NETFLIX & CHILL");
 		frmNetflixChill.setBounds(100, 100, 500, 400);
 		frmNetflixChill.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,6 +86,24 @@ public class TelaPrincipal {
 			}
 		});
 		menuUsuario.add(listarUsuarios);
+		
+		JMenuItem listarFilmesAssistidos = new JMenuItem("Listar Filmes Assistidos");
+		menuUsuario.add(listarFilmesAssistidos);
+		
+		JMenuItem verFilmesSugeridos = new JMenuItem("Ver Filmes Sugeridos");
+		menuUsuario.add(verFilmesSugeridos);
+		
+		JMenu menuFilme = new JMenu("Filme");
+		menuBar.add(menuFilme);
+		
+		JMenuItem listarFilmes = new JMenuItem("Listar Filmes");
+		menuFilme.add(listarFilmes);
+		
+		JMenuItem avaliarFilme = new JMenuItem("Avaliar Filme");
+		menuFilme.add(avaliarFilme);
+		
+		JMenuItem melhoresFilmes = new JMenuItem("Melhores Filmes");
+		menuFilme.add(melhoresFilmes);
 	}
 
 }

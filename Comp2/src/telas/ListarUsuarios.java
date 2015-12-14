@@ -36,11 +36,9 @@ public class ListarUsuarios extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListarUsuarios() {
-		Recomendador rec = Recomendador.getInstance();
-		
-		rec.criarUsuario("Raiza",20, Sexo.feminino);
-		rec.criarUsuario("Rafa",20, Sexo.masculino);
-		
+		Recomendador rec = Recomendador.getInstance();		
+	
+		rec.geraUsuarios();
 		
 		setTitle("Listar Usuários");
 		setBounds(100, 100, 450, 300);
