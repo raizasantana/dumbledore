@@ -12,6 +12,7 @@ import entidades.Recomendador;
 import entidades.Sexo;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import java.awt.event.HierarchyBoundsAdapter;
@@ -131,9 +132,13 @@ public class CriarUsuario extends JDialog {
 						 else
 							 rec.criarUsuario(txtNome.getText(), Integer.valueOf(txtIdade.getText()), Sexo.feminino);
 						 
-						 setVisible(false);
+						 
+						setVisible(false);
+						
+						 JOptionPane.showMessageDialog(null, "Avalie 5 filmes para completar o cadastro.");
+						
 						 AvaliarFilmes tlAvaliarFilmes = new AvaliarFilmes();
-						 tlAvaliarFilmes.setVisible(true);
+						 tlAvaliarFilmes.setVisible(true); 
 						
 					}
 				});

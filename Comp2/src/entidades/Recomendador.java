@@ -5,8 +5,8 @@ import java.util.Collections;
 
 public class Recomendador {
 	
-	private ArrayList<Filme> filmes = new ArrayList<Filme>();
-	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+	public ArrayList<Filme> filmes = new ArrayList<Filme>();
+	public ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	
 	
 	
@@ -29,6 +29,9 @@ public class Recomendador {
 		ArrayList<Filme> kMelhores = new ArrayList<Filme>();
 		filmes.add(new Filme("Matrix 1",Genero.drama));
 		filmes.add(new Filme("Gone Girl",Genero.drama));
+		filmes.add(new Filme("Jogos Vorazes",Genero.drama));
+		filmes.add(new Filme("Star Wars",Genero.drama));
+		filmes.add(new Filme("Se beber, não case",Genero.comedia));
 	/*	Collections.sort(filmes);
 		
 		for(int i = 0; i < k; i++)

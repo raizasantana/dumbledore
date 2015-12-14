@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Usuario {
 	
-	private HashMap<Filme, Integer> filmesAvaliados;
+	private HashMap<Filme, Integer> filmesAvaliados = new HashMap<Filme, Integer>();
 	private int idade;
 	private String nome, ocupacao, CEP, sexo;
 	
@@ -52,6 +52,7 @@ public class Usuario {
 		this.sexo = s;
 		this.ocupacao = o;
 		this.CEP = c;
+		this.filmesAvaliados = new HashMap<Filme, Integer>();
 				
 	}
 	

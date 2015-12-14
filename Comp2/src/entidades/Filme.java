@@ -9,7 +9,7 @@ public class Filme implements Comparable{
 	private String titulo;
 	private ArrayList<String> generos;
 	private Date dataLancamento;
-	private HashMap<Usuario, Integer> avaliacoes = new HashMap<Usuario, Integer>();
+	private HashMap<Usuario, Integer> avaliacoes; 
 	
 	public String toString()
 	{
@@ -41,6 +41,7 @@ public class Filme implements Comparable{
 		this.titulo = titulo;
 		this.generos = new ArrayList<String>();
 		this.generos.add(genero);
+		this.avaliacoes = new HashMap<Usuario, Integer>();
 	}
 	
 	public int getNotaMedia() {
