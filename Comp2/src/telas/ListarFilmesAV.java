@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import entidades.Recomendador;
+import entidades.Usuario;
 
 public class ListarFilmesAV extends JDialog {
 
@@ -24,9 +25,10 @@ public class ListarFilmesAV extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			ListarFilmesAV dialog = new ListarFilmesAV();
+			
+			/*ListarFilmesAV dialog = new ListarFilmesAV();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
+			dialog.setVisible(true);*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -35,7 +37,7 @@ public class ListarFilmesAV extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ListarFilmesAV() {
+	public ListarFilmesAV(Usuario u) {
 		setTitle("Filmes");
 		setBounds(100, 100, 600, 400);
 		getContentPane().setLayout(null);
@@ -56,13 +58,17 @@ public class ListarFilmesAV extends JDialog {
 				public void mousePressed(MouseEvent e) {
 					
 					String nota = "0";
-					while(Integer.valueOf(nota) <= 0 || Integer.valueOf(nota) > 5)
+					while(Integer.valueOf(nota) <= 0 || Integer.valueOf(nota) > 5 || nota.trim().isEmpty())
 					{	
 						nota = JOptionPane.showInputDialog("Insira sua nota para o filme: (1 a 5)");
 						
-						if(Integer.valueOf(nota) <= 0 || Integer.valueOf(nota) > 5)
+						if(Integer.valueOf(nota) <= 0 || Integer.valueOf(nota) > 5 || nota.trim().isEmpty())
 							JOptionPane.showMessageDialog(null,"Insira notas entre 1 a 5!");
 					}
+					
+					u.avaliaFilme(rec.filmes.get(list.getSelectedIndex()), Integer.valueOf(nota));
+					rec.filmes.get(list.getSelectedIndex()).getAvaliacoes().put(u, Integer.valueOf(nota));
+					
 		
 				}
 			});

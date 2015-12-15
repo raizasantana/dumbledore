@@ -16,6 +16,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class TelaPrincipal {
 
@@ -44,21 +47,29 @@ public class TelaPrincipal {
 	public TelaPrincipal() {
 		Recomendador rec = Recomendador.getInstance();
 		rec.carregaFilmes();
-		initialize();
+		initialize(rec);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Recomendador rec) {
+		
 		frmNetflixChill = new JFrame();
 		frmNetflixChill.setForeground(Color.RED);
 		frmNetflixChill.setTitle("NETFLIX & CHILL");
 		frmNetflixChill.setBounds(100, 100, 600, 600);
 		frmNetflixChill.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmNetflixChill.getContentPane().setLayout(null);
+		JLabel lblEfetueLoginPara = new JLabel("Efetue login para avaliar filmes e receber recomendações.");
+		lblEfetueLoginPara.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEfetueLoginPara.setBounds(41, 138, 511, 66);
+		frmNetflixChill.getContentPane().add(lblEfetueLoginPara);
+		
 		
 		JMenuBar menuBar = new JMenuBar();
-		frmNetflixChill.getContentPane().add(menuBar, BorderLayout.NORTH);
+		menuBar.setBounds(0, 0, 594, 21);
+		frmNetflixChill.getContentPane().add(menuBar);
 		
 		JMenu menuUsuario = new JMenu("Usuário");
 		menuBar.add(menuUsuario);
@@ -116,6 +127,35 @@ public class TelaPrincipal {
 		});
 		menuUsuario.add(verFilmesSugeridos);
 		
+		JMenuItem mntmEntrar = new JMenuItem("Entrar");
+		mntmEntrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				ListaUsuariosLogin tlLogin = new ListaUsuariosLogin();
+				tlLogin.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				tlLogin.setVisible(true);
+				
+			}
+		});
+		menuUsuario.add(mntmEntrar);
+		
+		JMenuItem mntmSair = new JMenuItem("Sair");
+		mntmSair.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				if(rec.usuarioLogado == null)
+					JOptionPane.showMessageDialog(null, "Não há usuário logado.");
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Usuário "+rec.usuarioLogado.getNome() + " deslogado com sucesso.");
+					rec.usuarioLogado = null;
+				}
+				
+			}
+		});
+		menuUsuario.add(mntmSair);
+		
 		JMenu menuFilme = new JMenu("Filme");
 		menuBar.add(menuFilme);
 		
@@ -135,14 +175,29 @@ public class TelaPrincipal {
 		avaliarFilme.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				ListarFilmesAV tlAvaliarFilme = new ListarFilmesAV();
-				tlAvaliarFilme.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				tlAvaliarFilme.setVisible(true);
+				if(rec.usuarioLogado == null)
+					JOptionPane.showMessageDialog(null,"Efetue login para avaliar os filmes");
+				else
+				{
+					ListarFilmesAV tlAvaliarFilme = new ListarFilmesAV(rec.usuarioLogado);
+					tlAvaliarFilme.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					tlAvaliarFilme.setVisible(true);
+					
+					lblEfetueLoginPara.setText("Usuário logado: "+ rec.usuarioLogado.getNome());
+				}
 			}
 		});
 		menuFilme.add(avaliarFilme);
 		
 		JMenuItem melhoresFilmes = new JMenuItem("Melhores Filmes");
+		melhoresFilmes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				ListarMelhoresFilmes tlFilmesSugeridos = new ListarMelhoresFilmes();
+				tlFilmesSugeridos.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				tlFilmesSugeridos.setVisible(true);
+			}
+		});
 		menuFilme.add(melhoresFilmes);
 		
 		JMenu mnNewMenu = new JMenu("Sobre");
@@ -153,6 +208,15 @@ public class TelaPrincipal {
 			}
 		});
 		menuBar.add(mnNewMenu);
+		
+		JLabel lblNewLabel = new JLabel("Bem-vindo(a) ao NetFlix & Chill!");
+		lblNewLabel.setForeground(Color.RED);
+		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(0, 60, 594, 66);
+		frmNetflixChill.getContentPane().add(lblNewLabel);
+		
+		
 	}
 
 }

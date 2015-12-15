@@ -128,10 +128,9 @@ public class CriarUsuario extends JDialog {
 						Recomendador rec = Recomendador.getInstance();
 						
 						 if(cbSexo.getSelectedItem().toString() == Sexo.masculino)
-							 rec.criarUsuario(txtNome.getText(), Integer.valueOf(txtIdade.getText()), Sexo.masculino);
+							 rec.criarUsuario(txtNome.getText(), Integer.valueOf(txtIdade.getText()), Sexo.masculino, textField.getText(), txtCEP.getText());						
 						 else
-							 rec.criarUsuario(txtNome.getText(), Integer.valueOf(txtIdade.getText()), Sexo.feminino);
-						 
+							 rec.criarUsuario(txtNome.getText(), Integer.valueOf(txtIdade.getText()), Sexo.feminino, textField.getText(), txtCEP.getText());
 						 
 						setVisible(false);
 						

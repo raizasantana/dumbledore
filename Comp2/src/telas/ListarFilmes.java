@@ -46,8 +46,8 @@ public class ListarFilmes extends JDialog {
 		getContentPane().setLayout(null);
 		Recomendador rec = Recomendador.getInstance();
 		
-		if(rec.filmes.size() <= 0)
-			rec.geraFilmes();
+		//if(rec.filmes.size() <= 0)
+		//	rec.geraFilmes();
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(50, 29, 400, 338);
@@ -68,6 +68,9 @@ public class ListarFilmes extends JDialog {
 				
 					mensagem += "\n Lançamento: " +rec.filmes.get(list.getSelectedIndex()).getDataLancamento();
 					mensagem += "\n Link IMDB: " +rec.filmes.get(list.getSelectedIndex()).getUrl();
+					
+//					for(int j = 0; j < rec.filmes.get(list.getSelectedIndex()).getAvaliacoes().size();j++)
+					mensagem += "\n Usuarios que assistiram:" + rec.filmes.get(list.getSelectedIndex()).getAvaliacoes().keySet();
 				
 					JOptionPane.showMessageDialog(null, mensagem);
 		
